@@ -1,5 +1,6 @@
 import random
 from enum import IntEnum
+import json
 
 
 class GameAction(IntEnum):
@@ -18,8 +19,26 @@ class GameResult(IntEnum):
 Victories = {
     GameAction.Rock: GameAction.Paper,
     GameAction.Paper: GameAction.Scissors,
-    GameAction.Scissors: GameAction.Rock
+    GameAction.Scissors: GameAction.Rock,
 }
+
+
+def read_save_data(json_route):
+    try:
+        with open(json_route, "r") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        print("Save file not found, creating...")
+        return {}
+    except json.JSONDecodeError:
+        print("Error decoding JSON file, creating...")
+        return {}
+
+
+def write_save_data(json_route, data):
+    with open(json_route, "w") as file:
+        json.dump(data, file, indent=4)
+
 
 def assess_game(user_action, computer_action):
 
@@ -69,7 +88,9 @@ def get_computer_action():
 
 def get_user_action():
     # Scalable to more options (beyond rock, paper and scissors...)
-    game_choices = [f"{game_action.name}[{game_action.value}]" for game_action in GameAction]
+    game_choices = [
+        f"{game_action.name}[{game_action.value}]" for game_action in GameAction
+    ]
     game_choices_str = ", ".join(game_choices)
     user_selection = int(input(f"\nPick a choice ({game_choices_str}): "))
     user_action = GameAction(user_selection)
@@ -79,7 +100,7 @@ def get_user_action():
 
 def play_another_round():
     another_round = input("\nAnother round? (y/n): ")
-    return another_round.lower() == 'y'
+    return another_round.lower() == "y"
 
 
 def main():
