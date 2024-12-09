@@ -12,3 +12,6 @@ pytest.ini
 
 #Documentación
 doc/
+
+#Testing json
+test_manipulate_data.json
