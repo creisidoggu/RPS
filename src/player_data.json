@@ -1,115 +1,120 @@
 {
-    "user": "Fran",
-    "elections": {
-        "Rock": 7,
-        "Paper": 4,
-        "Scissors": 10
-    },
-    "history": [
+    "fran": [
         {
-            "game": 1,
-            "election": "Scissors",
-            "match_result": "Draw"
+            "elections": {
+                "Rock": 7,
+                "Paper": 4,
+                "Scissors": 10
+            }
         },
         {
-            "game": 2,
-            "election": "Rock",
-            "match_result": "Loose"
-        },
-        {
-            "game": 3,
-            "election": "Rock",
-            "match_result": "Loose"
-        },
-        {
-            "game": 4,
-            "election": "Scissors",
-            "match_result": "Victory"
-        },
-        {
-            "game": 5,
-            "election": "Scissors",
-            "match_result": "Loose"
-        },
-        {
-            "game": 6,
-            "election": "Scissors",
-            "match_result": "Draw"
-        },
-        {
-            "game": 7,
-            "election": "Paper",
-            "match_result": "Loose"
-        },
-        {
-            "game": 8,
-            "election": "Rock",
-            "match_result": "Draw"
-        },
-        {
-            "game": 9,
-            "election": "Scissors",
-            "match_result": "Draw"
-        },
-        {
-            "game": 10,
-            "election": "Rock",
-            "match_result": "Draw"
-        },
-        {
-            "game": 11,
-            "election": "Paper",
-            "match_result": "Draw"
-        },
-        {
-            "game": 12,
-            "election": "Paper",
-            "match_result": "Draw"
-        },
-        {
-            "game": 13,
-            "election": "Scissors",
-            "match_result": "Draw"
-        },
-        {
-            "game": 14,
-            "election": "Rock",
-            "match_result": "Draw"
-        },
-        {
-            "game": 15,
-            "election": "Scissors",
-            "match_result": "Draw"
-        },
-        {
-            "game": 16,
-            "election": "Scissors",
-            "match_result": "Draw"
-        },
-        {
-            "game": 17,
-            "election": "Rock",
-            "match_result": "Victory"
-        },
-        {
-            "game": 18,
-            "election": "Rock",
-            "match_result": "Loose"
-        },
-        {
-            "game": 19,
-            "election": "Paper",
-            "match_result": "Victory"
-        },
-        {
-            "game": 20,
-            "election": "Scissors",
-            "match_result": "Draw"
-        },
-        {
-            "game": 21,
-            "election": "Scissors",
-            "match_result": "Loose"
+            "history": [
+                {
+                    "game": 1,
+                    "election": "Scissors",
+                    "match_result": "Draw"
+                },
+                {
+                    "game": 2,
+                    "election": "Rock",
+                    "match_result": "Loose"
+                },
+                {
+                    "game": 3,
+                    "election": "Rock",
+                    "match_result": "Loose"
+                },
+                {
+                    "game": 4,
+                    "election": "Scissors",
+                    "match_result": "Victory"
+                },
+                {
+                    "game": 5,
+                    "election": "Scissors",
+                    "match_result": "Loose"
+                },
+                {
+                    "game": 6,
+                    "election": "Scissors",
+                    "match_result": "Draw"
+                },
+                {
+                    "game": 7,
+                    "election": "Paper",
+                    "match_result": "Loose"
+                },
+                {
+                    "game": 8,
+                    "election": "Rock",
+                    "match_result": "Draw"
+                },
+                {
+                    "game": 9,
+                    "election": "Scissors",
+                    "match_result": "Draw"
+                },
+                {
+                    "game": 10,
+                    "election": "Rock",
+                    "match_result": "Draw"
+                },
+                {
+                    "game": 11,
+                    "election": "Paper",
+                    "match_result": "Draw"
+                },
+                {
+                    "game": 12,
+                    "election": "Paper",
+                    "match_result": "Draw"
+                },
+                {
+                    "game": 13,
+                    "election": "Scissors",
+                    "match_result": "Draw"
+                },
+                {
+                    "game": 14,
+                    "election": "Rock",
+                    "match_result": "Draw"
+                },
+                {
+                    "game": 15,
+                    "election": "Scissors",
+                    "match_result": "Draw"
+                },
+                {
+                    "game": 16,
+                    "election": "Scissors",
+                    "match_result": "Draw"
+                },
+                {
+                    "game": 17,
+                    "election": "Rock",
+                    "match_result": "Victory"
+                },
+                {
+                    "game": 18,
+                    "election": "Rock",
+                    "match_result": "Loose"
+                },
+                {
+                    "game": 19,
+                    "election": "Paper",
+                    "match_result": "Victory"
+                },
+                {
+                    "game": 20,
+                    "election": "Scissors",
+                    "match_result": "Draw"
+                },
+                {
+                    "game": 21,
+                    "election": "Scissors",
+                    "match_result": "Loose"
+                }
+            ]
         }
     ]
 }

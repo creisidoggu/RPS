@@ -1,6 +1,7 @@
 # VSCode
 .vscode
 .cache
+.coverage
 
 # Python
 venv/
@@ -8,10 +9,11 @@ __pycache__
 
 # Pytest
 .pytest_cache
-pytest.ini
 
 #Documentación
 doc/
 
 #Testing json
 test_manipulate_data.json
+
+requirements.txt

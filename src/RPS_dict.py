@@ -23,7 +23,7 @@ Victories = {
 }
 
 
-def read_save_data(json_route):
+def load_save_data(json_route):
     try:
         with open(json_route, "r") as file:
             return json.load(file)
@@ -77,10 +77,17 @@ def assess_game(user_action, computer_action):
 
     return game_result
 
-
-def get_computer_action():
-    computer_selection = random.randint(0, len(GameAction) - 1)
-    computer_action = GameAction(computer_selection)
+def get_computer_action(username):
+    loaded_data = load_save_data('src/player_data.json')
+    print(loaded_data)
+    if loaded_data[username][0]['elections'] == {}:
+        computer_selection = random.randint(0, len(GameAction) - 1)
+        computer_action = GameAction(computer_selection)
+    else:
+        elections = loaded_data[username][0]['elections']
+        most_used_choice = max(elections, key=elections.get)
+        computer_action = Victories[GameAction[most_used_choice]]
+    
     print(f"Computer picked {computer_action.name}.")
 
     return computer_action
@@ -104,7 +111,7 @@ def play_another_round():
 
 
 def main():
-
+    user = input('Inserte un usuario...')
     while True:
         try:
             user_action = get_user_action()
@@ -113,7 +120,7 @@ def main():
             print(f"Invalid selection. Pick a choice in range {range_str}!")
             continue
 
-        computer_action = get_computer_action()
+        computer_action = get_computer_action(user)
         assess_game(user_action, computer_action)
 
         if not play_another_round():
