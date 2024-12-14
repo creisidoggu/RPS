@@ -111,7 +111,16 @@ def play_another_round():
 
 
 def main():
+    json_route = 'src/player_data.json'
     user = input('Inserte un usuario...')
+    player_data = load_save_data(json_route)
+    
+    if user not in player_data:
+        player_data[user] = [
+            {"elections": {"Rock":0, "Paper":0, "Scissors":0}},
+            {"history":[]}
+        ]
+    
     while True:
         try:
             user_action = get_user_action()
@@ -121,7 +130,17 @@ def main():
             continue
 
         computer_action = get_computer_action(user)
-        assess_game(user_action, computer_action)
+        match_result = assess_game(user_action, computer_action)
+        print(match_result)
+        
+        election_name = user_action.name
+        player_data[user][0]['elections'][election_name] += 1
+        player_data[user][1]['history'].append({
+            "election": election_name,
+            "match_result": match_result.name
+        })
+        
+        write_save_data(json_route, player_data)
 
         if not play_another_round():
             break
