@@ -29,9 +29,11 @@ def load_save_data(json_route):
             return json.load(file)
     except FileNotFoundError:
         print("Save file not found, creating...")
+        open(json_route, "w")
         return {}
     except json.JSONDecodeError:
         print("Error decoding JSON file, creating...")
+        open(json_route, "w")
         return {}
 
 
@@ -79,7 +81,6 @@ def assess_game(user_action, computer_action):
 
 def get_computer_action(username):
     loaded_data = load_save_data('src/player_data.json')
-    print(loaded_data)
     if loaded_data[username][0]['elections'] == {}:
         computer_selection = random.randint(0, len(GameAction) - 1)
         computer_action = GameAction(computer_selection)
@@ -131,7 +132,6 @@ def main():
 
         computer_action = get_computer_action(user)
         match_result = assess_game(user_action, computer_action)
-        print(match_result)
         
         election_name = user_action.name
         player_data[user][0]['elections'][election_name] += 1

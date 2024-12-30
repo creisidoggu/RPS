@@ -2,9 +2,9 @@
     "fran": [
         {
             "elections": {
-                "Rock": 7,
-                "Paper": 4,
-                "Scissors": 10
+                "Rock": 12,
+                "Paper": 5,
+                "Scissors": 12
             }
         },
         {
@@ -92,6 +92,38 @@
                 {
                     "election": "Scissors",
                     "match_result": "Loose"
+                },
+                {
+                    "election": "Rock",
+                    "match_result": "Tie"
+                },
+                {
+                    "election": "Rock",
+                    "match_result": "Tie"
+                },
+                {
+                    "election": "Rock",
+                    "match_result": "Tie"
+                },
+                {
+                    "election": "Scissors",
+                    "match_result": "Victory"
+                },
+                {
+                    "election": "Scissors",
+                    "match_result": "Defeat"
+                },
+                {
+                    "election": "Paper",
+                    "match_result": "Victory"
+                },
+                {
+                    "election": "Rock",
+                    "match_result": "Tie"
+                },
+                {
+                    "election": "Rock",
+                    "match_result": "Tie"
                 }
             ]
         }
