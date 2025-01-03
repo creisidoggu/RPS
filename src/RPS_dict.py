@@ -66,15 +66,10 @@ def assess_game(user_action, computer_action):
 
 def get_computer_action(username):
     loaded_data = load_save_data('src/player_data.json')
-    
-    if loaded_data == {}:
-        computer_selection = random.randint(0, len(GameAction) - 1)
-        computer_action = GameAction(computer_selection)
-    elif loaded_data[username][0]['elections'] == {}:
-        computer_selection = random.randint(0, len(GameAction) - 1)
-        computer_action = GameAction(computer_selection)
+    elections = loaded_data[username][0]['elections']
+    if all(value == 0 for value in elections.values()):
+        computer_action = GameAction(random.randint(0, len(GameAction) - 1))
     else:
-        elections = loaded_data[username][0]['elections']
         most_used_choice = max(elections, key=elections.get)
         computer_action = Victories[GameAction[most_used_choice]][0]
     
@@ -130,6 +125,7 @@ def main():
             {"elections": {action.name : 0 for action in GameAction}},
             {"history":[]}
         ]
+        write_save_data(json_route, player_data)
     while True:
         game_option = selection_screen()
         if game_option==0:
