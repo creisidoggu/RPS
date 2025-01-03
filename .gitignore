@@ -10,8 +10,6 @@ __pycache__
 # Pytest
 .pytest_cache
 
-#Documentación
-doc/
 
 #Testing json
 test_manipulate_data.json
