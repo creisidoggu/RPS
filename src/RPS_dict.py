@@ -8,6 +8,8 @@ class GameAction(IntEnum):
     Rock = 0
     Paper = 1
     Scissors = 2
+    Lizard = 3
+    Spock = 4
 
 
 class GameResult(IntEnum):
@@ -17,9 +19,11 @@ class GameResult(IntEnum):
 
 
 Victories = {
-    GameAction.Rock: GameAction.Paper,
-    GameAction.Paper: GameAction.Scissors,
-    GameAction.Scissors: GameAction.Rock,
+    GameAction.Rock: [GameAction.Paper, GameAction.Spock],
+    GameAction.Paper: [GameAction.Scissors, GameAction.Lizard],
+    GameAction.Scissors: [GameAction.Rock, GameAction.Spock],
+    GameAction.Lizard: [GameAction.Scissors, GameAction.Rock],
+    GameAction.Spock: [GameAction.Paper, GameAction.Lizard]
 }
 
 
@@ -50,44 +54,29 @@ def assess_game(user_action, computer_action):
         print(f"User and computer picked {user_action.name}. Draw game!")
         game_result = GameResult.Tie
 
-    # You picked Rock
-    elif user_action == GameAction.Rock:
-        if computer_action == GameAction.Scissors:
-            print("Rock smashes scissors. You won!")
-            game_result = GameResult.Victory
-        else:
-            print("Paper covers rock. You lost!")
-            game_result = GameResult.Defeat
-
-    # You picked Paper
-    elif user_action == GameAction.Paper:
-        if computer_action == GameAction.Rock:
-            print("Paper covers rock. You won!")
-            game_result = GameResult.Victory
-        else:
-            print("Scissors cuts paper. You lost!")
-            game_result = GameResult.Defeat
-
-    # You picked Scissors
-    elif user_action == GameAction.Scissors:
-        if computer_action == GameAction.Rock:
-            print("Rock smashes scissors. You lost!")
-            game_result = GameResult.Defeat
-        else:
-            print("Scissors cuts paper. You won!")
-            game_result = GameResult.Victory
-
+    elif computer_action in Victories[user_action]:
+        print(f"{computer_action.name} beats {user_action.name}. You loose!")
+        game_result = GameResult.Defeat
+        
+    else:
+        print(f"{user_action.name} beats {computer_action.name}. You win!")
+        game_result = GameResult.Victory
+        
     return game_result
 
 def get_computer_action(username):
     loaded_data = load_save_data('src/player_data.json')
-    if loaded_data[username][0]['elections'] == {}:
+    print(loaded_data)
+    if loaded_data == {}:
+        computer_selection = random.randint(0, len(GameAction) - 1)
+        computer_action = GameAction(computer_selection)
+    elif loaded_data[username][0]['elections'] == {}:
         computer_selection = random.randint(0, len(GameAction) - 1)
         computer_action = GameAction(computer_selection)
     else:
         elections = loaded_data[username][0]['elections']
         most_used_choice = max(elections, key=elections.get)
-        computer_action = Victories[GameAction[most_used_choice]]
+        computer_action = Victories[GameAction[most_used_choice]][0]
     
     print(f"Computer picked {computer_action.name}.")
 
@@ -113,12 +102,12 @@ def play_another_round():
 
 def main():
     json_route = 'src/player_data.json'
-    user = input('Inserte un usuario...')
+    user = input('Inserte un usuario...\n')
     player_data = load_save_data(json_route)
     
     if user not in player_data:
         player_data[user] = [
-            {"elections": {"Rock":0, "Paper":0, "Scissors":0}},
+            {"elections": {action.name : 0 for action in GameAction}},
             {"history":[]}
         ]
     
