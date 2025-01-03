@@ -1,5 +1,5 @@
 import pytest
-from src.RPS_spock_lizard import Game, GameResult, GameAction
+from src.RPS_dict import Game, GameResult, GameAction
 
 
 @pytest.fixture

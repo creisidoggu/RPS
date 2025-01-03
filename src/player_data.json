@@ -1,0 +1,45 @@
+{
+    "fran": [
+        {
+            "elections": {
+                "Rock": 2,
+                "Paper": 0,
+                "Scissors": 3,
+                "Lizard": 2,
+                "Spock": 0
+            }
+        },
+        {
+            "history": [
+                {
+                    "election": "Rock",
+                    "match_result": "Defeat"
+                },
+                {
+                    "election": "Scissors",
+                    "match_result": "Victory"
+                },
+                {
+                    "election": "Lizard",
+                    "match_result": "Victory"
+                },
+                {
+                    "election": "Scissors",
+                    "match_result": "Victory"
+                },
+                {
+                    "election": "Lizard",
+                    "match_result": "Defeat"
+                },
+                {
+                    "election": "Scissors",
+                    "match_result": "Defeat"
+                },
+                {
+                    "election": "Rock",
+                    "match_result": "Tie"
+                }
+            ]
+        }
+    ]
+}

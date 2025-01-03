@@ -34,3 +34,7 @@ El modelo a utilizar es considerado un Agente reactivo basado en modelos ya que 
 3. __asses_game__ es la función de condición del estado de la partida para los agentes haciendo que se pueda ganar, perder o empatar dependiendo de la opción elegida.
 
 4. __get_computer_action__ es la función condición que decide la acción que usará el agente, en caso de que no haya datos guardados usará random la primera vez y en base a las siguientes veces irá recopilando datos que luego se guardarán en la memoria.
+
+## 3. Ampliación de RPS+ls
+
+Añadida la funcionalidad de Lagarto [3] y Spock [4], además de un menú de selección previo para seleccionar la modalidad a jugar

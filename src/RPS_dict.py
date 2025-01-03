@@ -66,7 +66,7 @@ def assess_game(user_action, computer_action):
 
 def get_computer_action(username):
     loaded_data = load_save_data('src/player_data.json')
-    print(loaded_data)
+    
     if loaded_data == {}:
         computer_selection = random.randint(0, len(GameAction) - 1)
         computer_action = GameAction(computer_selection)
@@ -83,16 +83,25 @@ def get_computer_action(username):
     return computer_action
 
 
-def get_user_action():
+def get_user_action(game_option):
     # Scalable to more options (beyond rock, paper and scissors...)
-    game_choices = [
-        f"{game_action.name}[{game_action.value}]" for game_action in GameAction
-    ]
+    if game_option == 2:
+        valid_choices = list(GameAction)
+    else:
+        valid_choices = list(GameAction)[:3]
+    game_choices = [f"{action.name}[{action.value}]" for action in valid_choices]
     game_choices_str = ", ".join(game_choices)
-    user_selection = int(input(f"\nPick a choice ({game_choices_str}): "))
-    user_action = GameAction(user_selection)
-
-    return user_action
+    
+    while True:
+        try:
+            user_selection = int(input(f"\nPick a choice ({game_choices_str}): "))
+            if user_selection not in [action.value for action in valid_choices]:
+                print(f"Invalid choice. Pick a valid option from: {game_choices_str}")
+                continue
+            user_action = GameAction(user_selection)
+            return user_action
+        except ValueError:
+            print('Invalid input. Enter a number corresponding to your choice.')
 
 
 def play_another_round():
@@ -100,9 +109,20 @@ def play_another_round():
     return another_round.lower() == "y"
 
 
+def selection_screen():
+    while True:
+        try:
+            choice = int(input('Select a game mode: [0] EXIT [1] RPS [2] RPSLS\n'))
+            if choice in [0, 1, 2]:
+                return choice
+            else:
+                print('Invalid choice. Pick a number between 0 and 2')
+        except ValueError:
+            print('Invalid input. Enter a number')
+
 def main():
     json_route = 'src/player_data.json'
-    user = input('Inserte un usuario...\n')
+    user = input('Insert a username:\n')
     player_data = load_save_data(json_route)
     
     if user not in player_data:
@@ -110,29 +130,33 @@ def main():
             {"elections": {action.name : 0 for action in GameAction}},
             {"history":[]}
         ]
-    
     while True:
-        try:
-            user_action = get_user_action()
-        except ValueError:
-            range_str = f"[0, {len(GameAction) - 1}]"
-            print(f"Invalid selection. Pick a choice in range {range_str}!")
-            continue
-
-        computer_action = get_computer_action(user)
-        match_result = assess_game(user_action, computer_action)
-        
-        election_name = user_action.name
-        player_data[user][0]['elections'][election_name] += 1
-        player_data[user][1]['history'].append({
-            "election": election_name,
-            "match_result": match_result.name
-        })
-        
-        write_save_data(json_route, player_data)
-
-        if not play_another_round():
+        game_option = selection_screen()
+        if game_option==0:
+            print('Exiting game. \'Seeya!')
             break
+        while True:
+            try:
+                user_action = get_user_action(game_option)
+            except ValueError:
+                range_str = f"[0, {len(game_option) - 1}]"
+                print(f"Invalid selection. Pick a choice in range {range_str}!")
+                continue
+
+            computer_action = get_computer_action(user)
+            match_result = assess_game(user_action, computer_action)
+            
+            election_name = user_action.name
+            player_data[user][0]['elections'][election_name] += 1
+            player_data[user][1]['history'].append({
+                "election": election_name,
+                "match_result": match_result.name
+            })
+            
+            write_save_data(json_route, player_data)
+
+            if not play_another_round():
+                break
 
 
 if __name__ == "__main__":
